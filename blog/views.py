@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
-# Create your views here.
+## for testing purpose
+def new(request):
+    return HttpResponse('this is new route')
