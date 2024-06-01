@@ -1,6 +1,6 @@
-
-
+import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +27,9 @@ INSTALLED_APPS = [
 
 # Configure static and media files
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'templates/static'] 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'templates/media' 
 
 # Configure authentication redirect
 LOGIN_URL = 'login'

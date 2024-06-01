@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>All Blogs</h2>
+  <ul>
+    {% for blog in blogs %}
+      <li>
+        <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
+        by {{ blog.author }}
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'user_blogs' %}">View Your Blogs</a>
+{% endblock %}

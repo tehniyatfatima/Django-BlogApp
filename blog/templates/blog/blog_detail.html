@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{{ blog.title }}</h2>
+  <p>{{ blog.content }}</p>
+  {% if blog.image %}
+    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+  {% endif %}
+  {% if blog.video %}
+    <video controls>
+      <source src="{{ blog.video.url }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  {% endif %}
+  <p>Author: {{ blog.author }}</p>
+  <a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}
