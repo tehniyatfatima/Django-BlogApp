@@ -1,5 +1,6 @@
-{% extends "base.html" %}
+{% extends "blog/base.html" %}
 {% block content %}
+<a href="{% url 'user_blogs' %}">View Your Blogs</a>
   <h2>All Blogs</h2>
   <ul>
     {% for blog in blogs %}
@@ -9,5 +10,7 @@
       </li>
     {% endfor %}
   </ul>
-  <a href="{% url 'user_blogs' %}">View Your Blogs</a>
+
+
+  
 {% endblock %}

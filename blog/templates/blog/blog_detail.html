@@ -1,6 +1,7 @@
-{% extends "base.html" %}
+{% extends "blog/base.html" %}
 {% block content %}
   <h2>{{ blog.title }}</h2>
+  <p>Author: {{ blog.author }}</p>
   <p>{{ blog.content }}</p>
   {% if blog.image %}
     <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
@@ -11,6 +12,7 @@
       Your browser does not support the video tag.
     </video>
   {% endif %}
-  <p>Author: {{ blog.author }}</p>
+  
   <a href="{% url 'home' %}">Back to Home</a>
+  <a href="{% url 'user_blogs' %}">Back to your Blogs</a>
 {% endblock %}

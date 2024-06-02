@@ -37,7 +37,7 @@ class UserBlogListView(LoginRequiredMixin, ListView):
     context_object_name = 'blogs'
 
     def get_queryset(self):
-        return Blog.objects.filter(author=self.request.user)
+        return Blog.objects.filter(user=self.request.user)
 
 class BlogDetailView(DetailView):
     model = Blog
@@ -48,10 +48,10 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
     model = Blog
     form_class = BlogForm
     template_name = 'blog/blog_form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('user_blogs')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
