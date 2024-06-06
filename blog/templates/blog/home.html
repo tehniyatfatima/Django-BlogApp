@@ -1,16 +1,106 @@
 {% extends "blog/base.html" %}
+
 {% block content %}
-<a href="{% url 'user_blogs' %}">View Your Blogs</a>
-  <h2>All Blogs</h2>
-  <ul>
-    {% for blog in blogs %}
-      <li>
-        <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
-        by {{ blog.author }}
-      </li>
-    {% endfor %}
-  </ul>
 
+<!-- Add this CSS to your stylesheet -->
+<style>
+  /* Updated color scheme */
+  .btn-primary {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: #000000;
+    background-color: #FFD700;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-  
+  .btn-primary:hover {
+    background-color: #00008B;
+    color: #FFD700;
+  }
+
+  .blog-title {
+    color: #FFD700;
+    font-size: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .blog-list {
+    padding-left: 0;
+    list-style: none;
+    margin-top: 1.5rem;
+  }
+
+  .blog-list-item {
+    background-color: #00008B;
+    border: 1px solid #000000;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    /* margin-bottom: 0.75rem; */
+    margin: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: slideInUp 0.5s ease-in-out;
+  }
+
+  .blog-list-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .blog-list-item a {
+    text-decoration: none;
+    color: #FFD700;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .blog-list-item .author {
+    font-size: 0.8rem;
+    color: #FFD700;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .blog-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<a href="{% url 'user_blogs' %}" class="btn-primary">View Your Blogs</a>
+<h2 class="blog-title">All Blogs</h2>
+<ul class="blog-list">
+  {% for blog in blogs %}
+    <li class="blog-list-item">
+      <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
+      <span class="author">by {{ blog.author }}</span>
+    </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}

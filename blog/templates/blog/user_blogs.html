@@ -1,14 +1,120 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h2>Your Blogs</h2>
-  <ul>
+
+<!-- Add this CSS to your stylesheet -->
+<style>
+  .user-blogs-container {
+    margin-top: 2rem;
+  }
+
+  .user-blogs-title {
+    color: #FFD700;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+  }
+
+  .blog-list {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .blog-list-item {
+    background-color: #00008B;
+    border: 1px solid #000000;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .blog-list-item a {
+    text-decoration: none;
+    color: #FFD700;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .blog-list-item a:hover {
+    color: #000000;
+  }
+
+  .blog-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .action-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .edit-link {
+    color: #FFD700;
+    background-color: #000000;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .edit-link:hover {
+    background-color: #FFD700;
+    color: #000000;
+  }
+
+  .delete-link {
+    color: #FFD700;
+    background-color: #FF0000;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .delete-link:hover {
+    background-color: #000000;
+    color: #FFD700;
+  }
+
+  .create-blog-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: #000000;
+    background-color: #FFD700;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .create-blog-link:hover {
+    background-color: #00008B;
+    color: #FFD700;
+  }
+</style>
+
+<div class="user-blogs-container">
+  <h2 class="user-blogs-title">Your Blogs</h2>
+  <ul class="blog-list">
     {% for blog in blogs %}
-      <li>
+      <li class="blog-list-item">
         <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
-        <a href="{% url 'blog_update' blog.pk %}">Edit</a>
-        <a href="{% url 'blog_delete' blog.pk %}">Delete</a>
+        <div class="action-links">
+          <a href="{% url 'blog_update' blog.pk %}" class="edit-link">Edit</a>
+          <a href="{% url 'blog_delete' blog.pk %}" class="delete-link">Delete</a>
+        </div>
       </li>
     {% endfor %}
   </ul>
-  <a href="{% url 'blog_create' %}">Create New Blog</a>
+  <a href="{% url 'blog_create' %}" class="create-blog-link">Create New Blog</a>
+</div>
+
 {% endblock %}
