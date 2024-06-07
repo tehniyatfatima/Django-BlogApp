@@ -26,7 +26,7 @@ class RegisterView(FormView):
         login(self.request, user)
         return super().form_valid(form)
 
-class BlogListView(ListView):
+class BlogListView(LoginRequiredMixin,ListView):
     model = Blog
     template_name = 'blog/home.html'
     context_object_name = 'blogs'
@@ -39,7 +39,7 @@ class UserBlogListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Blog.objects.filter(user=self.request.user)
 
-class BlogDetailView(DetailView):
+class BlogDetailView(LoginRequiredMixin,DetailView):
     model = Blog
     template_name = 'blog/blog_detail.html'
     context_object_name = 'blog'

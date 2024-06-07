@@ -78,8 +78,8 @@
   }
 
   .delete-link:hover {
-    background-color: #000000;
-    color: #FFD700;
+    background-color: #FF0000;
+    color: #000000;
   }
 
   .create-blog-link {
@@ -115,6 +115,7 @@
     {% endfor %}
   </ul>
   <a href="{% url 'blog_create' %}" class="create-blog-link">Create New Blog</a>
+  <a href="{% url 'home' %}" class="create-blog-link">Home Page</a>
 </div>
 
 {% endblock %}
